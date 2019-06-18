@@ -1,4 +1,4 @@
-package gooiseGolfclub.webservices;
+package gooiseGolfclub.persistensie;
 
 import java.sql.Date;
 

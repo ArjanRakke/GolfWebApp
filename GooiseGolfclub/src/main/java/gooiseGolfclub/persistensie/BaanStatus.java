@@ -1,11 +1,32 @@
-package gooiseGolfclub.webservices;
+package gooiseGolfclub.persistensie;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="baanstatus")
 public class BaanStatus {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="baan_id")
+	private int baan_id;
+	
+	@Column(name="golfbaanbeschikbaar")
 	private String golfbaanBeschikbaar;
+	@Column(name="Qualifying")
 	private String qualifying;
+	@Column(name="zomerofwintergreens")
 	private String zomerOfWintergreens;
+	@Column(name="bemest")
 	private String bemest;
+	@Column(name="onderhoud")
 	private String onderhoud;
+	@Column(name="aankondiging")
 	private String aankondiging;
 	
 	public BaanStatus() {
@@ -67,5 +88,9 @@ public class BaanStatus {
 
 	public void setAankondiging(String aankondiging) {
 		this.aankondiging = aankondiging;
+	}
+	
+	public String toString() {
+		return golfbaanBeschikbaar + " " + qualifying + " " + zomerOfWintergreens + " " + bemest + " " + onderhoud + " " + aankondiging;
 	}
 }

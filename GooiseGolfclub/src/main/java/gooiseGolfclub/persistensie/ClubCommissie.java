@@ -1,4 +1,4 @@
-package gooiseGolfclub.webservices;
+package gooiseGolfclub.persistensie;
 
 public class ClubCommissie {
 	private int commissie_id;

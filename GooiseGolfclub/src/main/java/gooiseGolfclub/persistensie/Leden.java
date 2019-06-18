@@ -1,11 +1,26 @@
-package gooiseGolfclub.webservices;
+package gooiseGolfclub.persistensie;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="leden")
 public class Leden {
+	@Id
+	@Column(name="NGF")
 	private int NGF;
+	
+	@Column(name="Voornaam")
 	private String voornaam;
+	@Column(name="Achternaam")
 	private String achternaam;
+	@Column(name="Telefoonnummer")
 	private int telefoonnummer;
+	@Column(name="Emailadres")
 	private String emailadres;
+	@Column(name="Handicap")
 	private double handicap;
 	
 	public Leden() {
