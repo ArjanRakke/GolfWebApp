@@ -83,4 +83,8 @@ public class Leden {
 	public void setHandicap(double handicap) {
 		this.handicap = handicap;
 	}
+	
+	public String toString() {
+		return NGF + " " + voornaam + " " + achternaam + " " + telefoonnummer + " " + emailadres + " " + handicap;
+	}
 }

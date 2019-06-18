@@ -31,19 +31,55 @@ public class LedenMySqlDaoImpl implements LedenDao {
 
 	@Override
 	public Leden save(Leden lid) {
-		// TODO Auto-generated method stub
+		try { 
+			Session session = HibernateUtil.getFactory().openSession();
+		    Transaction t = session.beginTransaction();
+		    
+		    session.save(lid);
+		    
+		    t.commit();
+		    session.close();
+		    return lid;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public Leden update(Leden lid) {
-		// TODO Auto-generated method stub
+		try {
+			Session session = HibernateUtil.getFactory().openSession();
+		    Transaction t = session.beginTransaction();
+		    
+		    session.update(lid);
+		    
+		    t.commit();
+		    session.close();
+			return lid;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public boolean delete(Leden lid) {
-		// TODO Auto-generated method stub
+		try {
+			Session session = HibernateUtil.getFactory().openSession();
+		    Transaction t = session.beginTransaction();
+		    
+		    session.delete(lid);
+		    
+		    t.commit();
+		    session.close();
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

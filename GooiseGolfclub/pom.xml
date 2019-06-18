@@ -18,16 +18,17 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.4.3.Final</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.3.Final</version>
 		</dependency>
 
 		<dependency>
