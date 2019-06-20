@@ -2,11 +2,32 @@ package gooiseGolfclub.persistensie;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@Entity
+@Table(name="wedstrijdschema")
 public class WedstrijdSchema {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="wedstrijd_id")
 	private int wedstrijd_id;
+
+	@Column(name="Naam")
 	private String naam;
+	@Column(name="Type")
 	private String type;
+	@Column(name="Holes")
 	private int holes;
+	@Column(name="Begindatum")
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date begindatum;
 	
 	public WedstrijdSchema() {

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inloggen</title>
+</head>
+<body>
+	<form id=loginForm>
+		Gebruikersnaam: <input type="text" name="username"/><p/>
+		Wachtwoord: <input type="password" name="password"/><p/>
+		<input type="button" value="Login" id="login"/>
+	</form>
+	
+	<script>
+		function login(event) {
+			var formData = new FormData(document.querySelector("#loginForm"));
+			var encData = new URLSearchParams(formData.entries());
+			
+			fetch("restservices/authentication", {method: "POST", body: encData})
+				.then(function(response){
+					if(response.ok) {
+						window.location.href = "weatherApp.html";
+						return response.json();
+					}
+					else {
+						throw "Wrong username/password";
+					}
+				})
+				.then(myJson => window.sessionStorage.setItem("sessionToken", myJson.JWT))
+				.catch(error => console.log(error));
+		}
+		
+		document.querySelector("#login").addEventListener("click", login);
+	</script>
+</body>
+</html>

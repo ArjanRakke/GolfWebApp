@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<title>Nieuw lid</title>
+</head>
+<body onload="toevoegen()">
+	<div id="frame">
+		<div>
+			<form id="lidToevoegen">
+				NGF: <input type="number" id="NGF" name="NGF" required/>
+				<p />
+				Voornaam: <input type="text" id="vm" name="Voornaam" maxlength="50" required/>
+				<p />
+				Achternaam: <input type="text" id="am" name="Achternaam" maxlength="50" required/>
+				<p />
+				Telefoonnummer: <input type="text" id="tel" name="Telefoonnummer" maxlength="10" required/>
+				<p />
+				Emailadres: <input type="email" id="email" name="Emailadres" maxlength="50" required/>
+				<p />
+				Handicap: <input type="number" id="h" name="Handicap" maxlength="3" required/>
+				<p />
+				<input type="button" id="confirmInsert" value="Lid toevoegen"/>
+				<input type="button" id="annuleerToevoegen" value="Annuleer"/>
+			</form>
+		</div>
+	</div>
+	<script src="javascript/main.js"></script>
+</body>
+</html>

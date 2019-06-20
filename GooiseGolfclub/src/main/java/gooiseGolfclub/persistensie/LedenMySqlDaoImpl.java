@@ -3,17 +3,21 @@ package gooiseGolfclub.persistensie;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 public class LedenMySqlDaoImpl implements LedenDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	// Haalt alle leden op van de database
 	public List<Leden> findAll() {
 		List<Leden> alleLeden = null;
 		
 		try {
-			Session session = HibernateUtil.getFactory().openSession();
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
 		    
 		    alleLeden = (List<Leden>) session.createQuery("FROM Leden").list();
@@ -30,10 +34,14 @@ public class LedenMySqlDaoImpl implements LedenDao {
 	}
 
 	@Override
-	public Leden save(Leden lid) {
+	// Maakt een nieuw lid in de database aan
+	public Leden save(int NGF, String vm, String am, int tel, String email, double h) {
 		try { 
-			Session session = HibernateUtil.getFactory().openSession();
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
+		    
+		    Leden lid = new Leden(NGF, vm, am, tel, email, h);
 		    
 		    session.save(lid);
 		    
@@ -48,10 +56,14 @@ public class LedenMySqlDaoImpl implements LedenDao {
 	}
 
 	@Override
-	public Leden update(Leden lid) {
+	// Wijzigt een lid in de database
+	public Leden update(int NGF, String vm, String am, int tel, String email, double h) {
 		try {
-			Session session = HibernateUtil.getFactory().openSession();
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
+		    
+		    Leden lid = new Leden(NGF, vm, am, tel, email, h);
 		    
 		    session.update(lid);
 		    
@@ -66,10 +78,15 @@ public class LedenMySqlDaoImpl implements LedenDao {
 	}
 
 	@Override
-	public boolean delete(Leden lid) {
+	// Verwijderd een lid uit de database
+	public boolean delete(int NGF) {
 		try {
-			Session session = HibernateUtil.getFactory().openSession();
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
+		    
+		    Leden lid = new Leden();
+		    lid.setNGF(NGF);
 		    
 		    session.delete(lid);
 		    
