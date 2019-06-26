@@ -1,9 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <title>Lid wijzigen</title>
 </head>
-<body>
-
+<body onload="wijzigen()">
+	<div id="frame">
+		<div>
+			<form id="lidWijzigen">
+				<input type="hidden" id="NGF" name="NGF" required />
+				<p />
+				Voornaam: <input type="text" id="vm" name="Voornaam" maxlength="50" required/>
+				<p />
+				Achternaam: <input type="text" id="am" name="Achternaam" maxlength="50" required/>
+				<p />
+				Telefoonnummer: <input type="text" id="tel" name="Telefoonnummer" maxlength="10" required/>
+				<p />
+				Emailadres: <input type="email" id="email" name="Emailadres" maxlength="50" required/>
+				<p />
+				Handicap: <input type="number" id="h" name="Handicap" required/>
+				<p />
+				<input type="button" id="confirmUpdate" value="Lid wijzigen"/>
+				<input type="button" id="annuleerWijziging" value="Annuleer"/>
+			</form>
+		</div>
+	</div>
+	<script src="javascript/main.js"></script>
 </body>
 </html>

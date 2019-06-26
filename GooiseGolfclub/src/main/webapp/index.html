@@ -5,10 +5,30 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <title>Home</title>
 </head>
-<body onload="">
+<body onload="showBaanStatus()">
 	<div id="frame">
+		<nav>
+			<a class="navLinks" href="index.html">Home</a>
+			<a href="leden.html">Leden</a>
+			<a href="wedstrijden.html">Wedstrijden</a>
+			<a href="inloggen.html">inloggen</a>
+		</nav>
+		
 		<div id="baanStatus">
-			
+			<h2>Baanstatus</h2>
+			<p />
+			<ul id="baanstatusLijst">
+				<li id="open"></li>
+				<li id="zomerOfWinterGreens"></li>
+				<li id="trolleysEnGolfkarren"></li>
+				<li id="qualifying"></li>
+				<li id="bemest"></li>
+				<li id="onderhoud"></li>
+			</ul>
+			<p />
+			<label id="aankondiging"></label>
+			<p />
+			<button id="wijzigBaanStatus">Baanstatus wijzigen</button>
 		</div>
 	</div>
 	<script src="javascript/main.js"></script>

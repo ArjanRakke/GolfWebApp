@@ -12,4 +12,8 @@ public class BaanStatusService {
 	public List<BaanStatus> getBaanStatus() {
 		return bDao.show();
 	}
+	
+	public BaanStatus updateBaanStatus(int bId, String gbBes, String qual, String zwg, String trlsGfk, String bem, String ond, String aan) {
+		return bDao.update(bId, gbBes, qual, zwg, trlsGfk, bem, ond, aan);
+	}
 }

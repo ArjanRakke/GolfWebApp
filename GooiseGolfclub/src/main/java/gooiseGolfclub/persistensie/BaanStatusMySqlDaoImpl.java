@@ -32,12 +32,26 @@ public class BaanStatusMySqlDaoImpl implements BaanStatusDao {
 
 	@Override
 	//zorgt voor het wijzigen van de baanstatus
-	public BaanStatus update(BaanStatus status) {
+	public BaanStatus update(int bId, String gbBes, String qual, String zwg, String trlsGfk, String bem, String ond, String aan) {
 		try {
 			SessionFactory sessFact = HibernateUtil.getFactory();
 			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
 
+		    //BaanStatus bStatus;
+		    
+		    /*bStatus = (BaanStatus)session.load(BaanStatus.class, 1);
+		    //bStatus.setBaan_id(bId);
+		    bStatus.setGolfbaanBeschikbaar(gbBes);
+		    bStatus.setQualifying(qual);
+		    bStatus.setZomerOfWintergreens(zwg);
+		    bStatus.setTrolleysEngolfkarren(trlsGfk);
+		    bStatus.setBemest(bem);
+		    bStatus.setOnderhoud(ond);
+		    bStatus.setAankondiging(aan);*/
+		    
+		    BaanStatus status = new BaanStatus(bId, gbBes, qual, zwg, trlsGfk, bem, ond, aan);
+		    
 			session.update(status);
 
 			t.commit();

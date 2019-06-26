@@ -1,3 +1,37 @@
 body {
 	background-color: lightBlue;
 }
+
+nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+	padding: 20px;
+}
+
+.navLinks {
+  margin-left: 35%;
+  text-align: center;
+}
+
+a:hover {
+  background-color: lightGreen;
+}
+
+#baanStatus {
+	position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 325px;
+    height: 250px;
+    border: 1px solid black;
+}

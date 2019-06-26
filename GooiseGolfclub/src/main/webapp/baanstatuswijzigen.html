@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<title>Baanstatus wijzigen</title>
+</head>
+<body onload="baanStatusWijzigen()">
+	<form id="baanstatusWijzigen">
+		 <input type="hidden" id="bId" name="baan_id" value="1" required/>
+		 <input type="hidden" id="opUnchecked" name="open" value="De baan is niet open"/>
+		 <input type="hidden" id="trlsGfkUnchecked" name="trolleysEnGolfkarren" value="Trolleys en golfkarren zijn niet toegestaan"/>
+		 <input type="hidden" id="qualUnchecked" name="qualifying" value="De baan is niet qualifying"/>
+		 <input type="hidden" id="bemUnchecked" name="bemest" value="De baan is niet bemest"/>
+		 <input type="hidden" id="ondUnchecked" name="onderhoud" value="De baan ondergaat geen onderhoud"/>
+		<table>
+			<tr><th>Baanstatus</th></tr>
+			<tr><td>Open</td><td><input type="checkbox" id="op" name="open" value="De baan is open"/></td></tr>
+			<tr><td>Zomergreens</td><td><input type="radio" id="zgreen" name="greens" value="De baan heeft nu zomergreens" checked="checked"/></td></tr>
+			<tr><td>Wintergreens</td><td><input type="radio" id="wgreen" name="greens" value="De baan heeft nu wintergreens"/></td></tr>
+			<tr><td>Trolleys/Golfkarren</td><td><input type="checkbox" id="trlsGfk" name="trolleysEnGolfkarren" value="Trolleys en golfkarren toegestaan"/></td></tr>
+			<tr><td>Qualifying</td><td><input type="checkbox" id="qual" name="qualifying" value="De baan is qualifying"/></td></tr>
+			<tr><td>Bemest</td><td><input type="checkbox" id="bem" name="bemest" value="De baan is bemest"/></td></tr>
+			<tr><td>Onderhoud</td><td><input type="checkbox" id="ond" name="onderhoud" value="De baan ondergaat onderhoud"/></td></tr>
+			<tr><td>Aankondiging</td><td><textarea id="ak" name="aankondiging" form="baanstatusWijzigen" rows="10" cols="50"></textarea></td></tr>
+		</table>
+		<p />
+		<input type="button" id="confirmUpdate" value="Baanstatus wijzigen" /> 
+		<input type="button" id="annuleerWijziging" value="Annuleer" />
+	</form>
+	<script src="javascript/main.js"></script>
+</body>
+</html>

@@ -22,6 +22,8 @@ public class BaanStatus {
 	private String qualifying;
 	@Column(name="zomerofwintergreens")
 	private String zomerOfWintergreens;
+	@Column(name="trolleysengolfkarren")
+	private String trolleysEnGolfkarren;
 	@Column(name="bemest")
 	private String bemest;
 	@Column(name="onderhoud")
@@ -33,13 +35,23 @@ public class BaanStatus {
 		
 	}
 	
-	public BaanStatus(String gbBes, String q, String zwg, String b, String o, String a) {
+	public BaanStatus(int bId, String gbBes, String qual, String zwg, String trlsGfk, String bem, String ond, String aan) {
+		this.baan_id = bId;
 		this.golfbaanBeschikbaar = gbBes;
-		this.qualifying = q;
+		this.qualifying = qual;
 		this.zomerOfWintergreens = zwg;
-		this.bemest = b;
-		this.onderhoud = o;
-		this.aankondiging = a;
+		this.trolleysEnGolfkarren = trlsGfk;
+		this.bemest = bem;
+		this.onderhoud = ond;
+		this.aankondiging = aan;
+	}
+	
+	public int getBaan_id() {
+		return baan_id;
+	}
+	
+	public void setBaan_id(int baan_id) {
+		this.baan_id = baan_id;
 	}
 
 	public String getGolfbaanBeschikbaar() {
@@ -64,6 +76,14 @@ public class BaanStatus {
 
 	public void setZomerOfWintergreens(String zomerOfWintergreens) {
 		this.zomerOfWintergreens = zomerOfWintergreens;
+	}
+	
+	public String getTrolleysEnGolfkarren() {
+		return trolleysEnGolfkarren;
+	}
+	
+	public void setTrolleysEngolfkarren(String trolleysEnGolfkarren) {
+		this.trolleysEnGolfkarren = trolleysEnGolfkarren;
 	}
 
 	public String getBemest() {

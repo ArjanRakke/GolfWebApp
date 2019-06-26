@@ -69,10 +69,10 @@ public class LedenResource {
 
 		//if (role) {
 			Leden nieuwLid = service.save(NGF, vm, am, tel, email, h);
-
+			
 			if (nieuwLid == null) {
 				Map<String, String> messages = new HashMap<String, String>();
-				messages.put("error", "Land is niet toegevoegd");
+				messages.put("error", "Lid is niet toegevoegd");
 				return Response.status(409).entity(messages).build();
 			}
 
@@ -85,7 +85,7 @@ public class LedenResource {
 	}
 
 	@PUT
-	@Path("/leden/{NGF}")
+	@Path("/{NGF}")
 	// @RolesAllowed("user")
 	@Produces("application/json")
 	// Voert een put request uit en wijzigt het lid in de database
@@ -101,7 +101,7 @@ public class LedenResource {
 
 		if (wijzigLid == null) {
 			Map<String, String> messages = new HashMap<String, String>();
-			messages.put("error", "Land bestaat niet!");
+			messages.put("error", "Lid bestaat niet!");
 			return Response.status(409).entity(messages).build();
 		}
 
