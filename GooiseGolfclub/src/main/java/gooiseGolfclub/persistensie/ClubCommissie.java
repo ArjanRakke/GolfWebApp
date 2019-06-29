@@ -1,10 +1,32 @@
 package gooiseGolfclub.persistensie;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="clubcommissie")
 public class ClubCommissie {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="commissie_id")
 	private int commissie_id;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name="NGF")
 	private Leden ngf;
+	@Column(name="Gebruikersnaam")
 	private String gebruikersnaam;
+	@Column(name="Wachtwoord")
 	private String wachtwoord;
+	@Column(name="Rol")
 	private String rol;
 	
 	public ClubCommissie() {

@@ -1,8 +1,10 @@
 package gooiseGolfclub.persistensie;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class WedstrijdSchemaMySqlDaoImpl implements WedstrijdSchemaDao {
@@ -28,10 +30,12 @@ public class WedstrijdSchemaMySqlDaoImpl implements WedstrijdSchemaDao {
 	}
 
 	@Override
-	public WedstrijdSchema save(WedstrijdSchema wedstrijd) {
+	public WedstrijdSchema save(int wId, String nm, String tp, int holes, Date bgDatum) {
 		try { 
 			Session session = HibernateUtil.getFactory().openSession();
 		    Transaction t = session.beginTransaction();
+		    
+		    WedstrijdSchema wedstrijd = new WedstrijdSchema(wId, nm, tp, holes, bgDatum);
 		    
 		    session.save(wedstrijd);
 		    
@@ -44,12 +48,36 @@ public class WedstrijdSchemaMySqlDaoImpl implements WedstrijdSchemaDao {
 		}
 		return null;
 	}
+	
+	@Override
+	public WedstrijdSchema update(int wId, String nm, String tp, int holes, Date bgDatum) {
+		try {
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
+		    Transaction t = session.beginTransaction();
+		    
+		    WedstrijdSchema wedstrijd = new WedstrijdSchema(wId, nm, tp, holes, bgDatum);
+		    
+		    session.update(wedstrijd);
+		    
+		    t.commit();
+		    session.close();
+			return wedstrijd;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
-	public boolean delete(WedstrijdSchema wedstrijd) {
+	public boolean delete(int wedstrijd_id) {
 		try {
 			Session session = HibernateUtil.getFactory().openSession();
 		    Transaction t = session.beginTransaction();
+		    
+		    WedstrijdSchema wedstrijd = new WedstrijdSchema();
+		    wedstrijd.setWedstrijd_id(wedstrijd_id);
 		    
 		    session.delete(wedstrijd);
 		    
@@ -62,5 +90,4 @@ public class WedstrijdSchemaMySqlDaoImpl implements WedstrijdSchemaDao {
 		}
 		return false;
 	}
-
 }

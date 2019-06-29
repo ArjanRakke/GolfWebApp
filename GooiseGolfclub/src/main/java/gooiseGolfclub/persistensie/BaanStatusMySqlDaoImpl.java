@@ -37,18 +37,6 @@ public class BaanStatusMySqlDaoImpl implements BaanStatusDao {
 			SessionFactory sessFact = HibernateUtil.getFactory();
 			Session session = sessFact.openSession();
 		    Transaction t = session.beginTransaction();
-
-		    //BaanStatus bStatus;
-		    
-		    /*bStatus = (BaanStatus)session.load(BaanStatus.class, 1);
-		    //bStatus.setBaan_id(bId);
-		    bStatus.setGolfbaanBeschikbaar(gbBes);
-		    bStatus.setQualifying(qual);
-		    bStatus.setZomerOfWintergreens(zwg);
-		    bStatus.setTrolleysEngolfkarren(trlsGfk);
-		    bStatus.setBemest(bem);
-		    bStatus.setOnderhoud(ond);
-		    bStatus.setAankondiging(aan);*/
 		    
 		    BaanStatus status = new BaanStatus(bId, gbBes, qual, zwg, trlsGfk, bem, ond, aan);
 		    

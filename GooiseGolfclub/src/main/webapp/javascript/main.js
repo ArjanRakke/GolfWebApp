@@ -27,11 +27,13 @@ function showLedenLijst() {
 			
 			var row = table.insertRow(-1);
 			var cell1 = row.insertCell(0);
+			cell1.setAttribute("class", "numberAlignment");
 			var cell2 = row.insertCell(1);
 			var cell3 = row.insertCell(2);
 			var cell4 = row.insertCell(3);
 			var cell5 = row.insertCell(4);
 			var cell6 = row.insertCell(5);
+			cell6.setAttribute("class", "numberAlignment");
 			var cell7 = row.insertCell(6);
 			
 			cell1.append(ngf);
@@ -67,7 +69,7 @@ function showLedenLijst() {
 				
 				if (confirmatie) {
 					// Roep een DELETE request aan
-					fetch("restservices/leden/" + ngf, {method : "DELETE"})
+					fetch("restservices/leden/" + ngf, fetchOptionsDelete)
 					.then(function(response) {
 						if(response.ok) {
 							table.deleteRow(rIndex);
@@ -77,6 +79,7 @@ function showLedenLijst() {
 							console.log("Lid niet gevonden!");
 						}
 						else {
+							alert("U bent niet gemachtigd om deze handeling uit te voeren!");
 							console.log("Kan lid niet verwijderen!");
 						}
 					});
@@ -88,10 +91,8 @@ function showLedenLijst() {
 }
 
 // Voegt een nieuw lid toe
-function toevoegen() {
+function toevoegenLid() {
 	var lidToevoegen = document.querySelector("#lidToevoegen");
-	var toevoegenConfirmatie = document.querySelector("#confirmInsert");
-	var annuleerToevoegen = document.querySelector("#annuleerToevoegen");
 	
 	toevoegenConfirmatie.addEventListener("click", function() {
 		
@@ -119,7 +120,7 @@ function toevoegen() {
 			}
 			
 			// Roep een POST request aan
-			fetch("restservices/leden", {method : "POST", body : encData})
+			fetch("restservices/leden", fetchOptionsPost)
 				.then(response => Promise.all([response.status, response.json()]))
 				.then(function([status, myJson]) {
 					if (status == 200) {
@@ -127,6 +128,11 @@ function toevoegen() {
 					}
 					else if (status == 409) {
 						alert("Dit NGF bestaat al!");
+					}
+					else if (status == 410) {
+						alert("U bent niet gemachtigd om deze handeling uit te voeren! " +
+						"U wordt teruggestuurd naar de hoofdpagina!");
+						window.location.href = "index.html"
 					}
 					else {
 						alert("Er is een onbekende fout opgetreden! Voer alle gegevens opnieuw in!");
@@ -143,7 +149,7 @@ function toevoegen() {
 }
 
 // wijzigt een lid in de lijst
-function wijzigen() {
+function wijzigenLid() {
 	var lidWijzigen = document.querySelector("#lidWijzigen");
 	var wijzigenConfirmatie = document.querySelector("#confirmUpdate");
 	var annuleerWijziging = document.querySelector("#annuleerWijziging");
@@ -186,12 +192,21 @@ function wijzigen() {
 			}
 			
 			// Roep een PUT request aan
-			fetch("restservices/leden/" + myJson.NGF, {method : "PUT", body : encData})
+			fetch("restservices/leden/" + myJson.NGF, fetchOptionsPut)
 				.then(response => Promise.all([response.status, response.json()]))
 				.then(function([status, myJson]) {
 					if (status == 200) {
 						window.location.href = "leden.html";
 						sessionStorage.removeItem("lid");
+					}
+					else if (status == 409) {
+						alert("Dit NGF bestaat al!");
+					}
+					else if (status == 410) {
+						alert("U bent niet gemachtigd om deze handeling uit te voeren! " +
+						"U wordt teruggestuurd naar de hoofdpagina!");
+						sessionStorage.removeItem("lid");
+						window.location.href = "index.html"
 					}
 					else {
 						alert("Er is een onbekende fout opgetreden!");
@@ -243,34 +258,33 @@ function showBaanStatus() {
 }
 
 // wijzigt de baanstatus
-function baanStatusWijzigen() {
-	var baanstatusWijzigen = document.querySelector("#baanstatusWijzigen");
+function wijzigenBaanstatus() {
+	var baanStatusWijzigen = document.querySelector("#baanStatusWijzigen");
 	var baan_id = document.querySelector("#bId").value;
-	var wijzigenConfirmatie = document.querySelector("#confirmUpdate");
 	var annuleerWijziging = document.querySelector("#annuleerWijziging");
 	
-	if(document.querySelector("#op").checked) {
-		document.querySelector("#opUnchecked").disabled = true;
-	}
-	
-	if(document.querySelector("#trlsGfk").checked) {
-		document.querySelector("#trlsGfkUnchecked").disabled = true;
-	}
-	
-	if(document.querySelector("#qual").checked) {
-		document.querySelector("#qualUnchecked").disabled = true;
-	}
-	
-	if(document.querySelector("#bem").checked) {
-		document.querySelector("#bemUnchecked").disabled = true;
-	}
-	
-	if(document.querySelector("#ond").checked) {
-		document.querySelector("#ondUnchecked").disabled = true;
-	}
-	
 	wijzigenConfirmatie.addEventListener("click", function() {
-			var formData = new FormData(baanstatusWijzigen);
+			if(document.querySelector("#op").checked) {
+				document.querySelector("#opUnchecked").disabled = true;
+			}
+			
+			if(document.querySelector("#trlsGfk").checked) {
+				document.querySelector("#trlsGfkUnchecked").disabled = true;
+			}
+			
+			if(document.querySelector("#qual").checked) {
+				document.querySelector("#qualUnchecked").disabled = true;
+			}
+			
+			if(document.querySelector("#bem").checked) {
+				document.querySelector("#bemUnchecked").disabled = true;
+			}
+			
+			if(document.querySelector("#ond").checked) {
+				document.querySelector("#ondUnchecked").disabled = true;
+			}
+		
+			var formData = new FormData(baanStatusWijzigen);
 			var encData = new URLSearchParams(formData.entries());
 			
 			// definieer de methode van het request en de headers
@@ -283,17 +297,213 @@ function baanStatusWijzigen() {
 			}
 			
 			// Roep een PUT request aan
-			fetch("restservices/baanstatus/" + baan_id, {method : "PUT", body : encData})
+			fetch("restservices/baanstatus/" + baan_id, fetchOptionsPut)
 				.then(response => Promise.all([response.status, response.json()]))
 				.then(function([status, myJson]) {
 					if (status == 200) {
-						//window.location.href = "index.html";
+						window.location.href = "index.html";
 					}
 					else {
-						alert("Er is een onbekende fout opgetreden!");
+						alert("U bent niet gemachtigd om deze handeling uit te voeren! " +
+								"U wordt teruggestuurd naar de hoofdpagina!");
+						window.location.href = "index.html"
 					}
 				});
 	});
 	
+	annuleerWijziging.addEventListener("click", function() {
+		window.location.href= "index.html";
+	});
+}
+
+// Laat een lijst met wedstrijden zien
+function showWedstrijdSchema() {
+	// Roep een GET request aan
+	fetch("restservices/wedstrijdschema")
+	.then(response => response.json())
+	.then(function(myJson) {
+		var table = document.querySelector("#wedstrijdSchema"), rIndex;
+		
+		nieuweWedstrijd.addEventListener("click", function() {
+			window.location.href = "nieuwewedstrijd.html";
+		});
+		
+		for (const wedstrijd of myJson) {
+			
+			var naam = document.createTextNode(wedstrijd.Naam);
+			var type = document.createTextNode(wedstrijd.Type);
+			var holes = document.createTextNode(wedstrijd.Holes);
+			var begindatum = document.createTextNode(wedstrijd.Begindatum);
+			var wijzigBtn = document.createElement("button");
+			wijzigBtn.textContent = "wijzig";
+			var verwijderBtn = document.createElement("button");
+			verwijderBtn.textContent = "verwijder";
+			
+			var row = table.insertRow(-1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			cell3.setAttribute("class", "numberAlignment");
+			var cell4 = row.insertCell(3);
+			var cell5 = row.insertCell(4);
+			
+			cell1.append(naam);
+			cell2.append(type);
+			cell3.append(holes);
+			cell4.append(begindatum);
+			cell5.append(wijzigBtn);
+			cell5.append(verwijderBtn);
+			
+			for (var i = 1; i < table.rows.length; i ++) {
+				table.rows[i].cells[4].onmouseover = function() {
+					rIndex = this.parentElement.rowIndex;
+				}
+			}
+
+			wijzigBtn.addEventListener("click", function() {
+				sessionStorage.setItem("wedstrijd", JSON.stringify(wedstrijd));
+				window.location.href = "wedstrijdwijzigen.html";
+			});
+			
+			// defineer de methode en de headers van het request
+			var fetchOptionsDelete = {
+					method: 'DELETE',
+					headers : { 'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken") }
+			}
+			
+			verwijderBtn.addEventListener("click", function() {
+				
+				var wedstrijd_id = wedstrijd.Wedstrijd_id;
+				
+				var confirmatie = confirm("Weet u zeker dat u deze wedstrijd wilt verwijderen?");
+				
+				if (confirmatie) {
+					// Roep een DELETE request aan
+					fetch("restservices/wedstrijdschema/" + wedstrijd_id, fetchOptionsDelete)
+					.then(function(response) {
+						if(response.ok) {
+							table.deleteRow(rIndex);
+							console.log("Wedstrijd verwijderd!")
+						}
+						else if (response.status == 404) {
+							console.log("Wedstrijd niet gevonden!");
+						}
+						else {
+							alert("U bent niet gemachtigd om deze handeling uit te voeren!");
+							console.log("Kan wedstrijd niet verwijderen!");
+						}
+					});
+				}
+			});
+		}
+	});
+}
+
+function toevoegenWedstrijd() {
+	var wedstrijdToevoegen = document.querySelector("#wedstrijdToevoegen");
 	
+	toevoegenConfirmatie.addEventListener("click" , function() {
+		if(wId.value == "" || nm.value == "" || tp.value == "" 
+			|| holes.value == "" || bgDatum.value == "") {
+			alert("Voer alle velden correct in alstublieft!");
+		}
+		else {
+			var formData = new FormData(wedstrijdToevoegen);
+			var encData = new URLSearchParams(formData.entries());
+			
+			// definieer de methode van het request en de headers
+			var fetchOptionsPost = {
+					method: 'POST',
+					body: encData,
+					headers : {
+						'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+					}
+			}
+			
+			// Roep een POST request aan
+			fetch("restservices/wedstrijdschema", fetchOptionsPost)
+				.then(response => Promise.all([response.status, response.json()]))
+				.then(function([status, myJson]) {
+					if (status == 200) {
+						window.location.href = "wedstrijden.html";
+					}
+					else if (status == 409) {
+						alert("Dit wedstrijd_id bestaat al!");
+					}
+					else if (status == 410) {
+						alert("U bent niet gemachtigd om deze handeling uit te voeren!" +
+						"U wordt teruggestuurd naar de hoofdpagina!");
+						window.location.href = "index.html"
+					}
+					else {
+						alert("Er is een onbekende fout opgetreden! Voer alle gegevens opnieuw in!");
+						wedstrijdToevoegen.reset();
+					}
+				})
+				.catch(error => console.log(error.message));
+		}	
+	});
+	
+	annuleerToevoegen.addEventListener("click", function() {
+		window.location.href = "wedstrijden.html";
+	});
+}
+
+//wijzigt een lid in de lijst
+function wijzigenWedstrijd() {
+	var wedstrijdWijzigen = document.querySelector("#wedstrijdWijzigen");
+	var wedstrijd = sessionStorage.getItem("wedstrijd");
+	var myJson = JSON.parse(wedstrijd);
+	
+	document.querySelector("#wId").value = myJson.Wedstrijd_id;
+	document.querySelector("#nm").value = myJson.Naam;
+	document.querySelector("#tp").value = myJson.Type;
+	document.querySelector("#holes").value = myJson.Holes;
+	document.querySelector("#bgDatum").value = myJson.Begindatum;
+	
+	wijzigenConfirmatie.addEventListener("click", function() {
+		
+		if(wId.value == "" || nm.value == "" || tp.value == "" 
+			|| holes.value == "" || bgDatum.value == "") {
+			alert("Voer alle velden correct in alstublieft!");
+		}
+		else {
+			var formData = new FormData(wedstrijdWijzigen);
+			var encData = new URLSearchParams(formData.entries());
+			
+			// definieer de methode van het request en de headers
+			var fetchOptionsPut = {
+					method: 'PUT',
+					body: encData,
+					headers : {
+						'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken")
+					}
+			}
+			
+			// Roep een PUT request aan
+			fetch("restservices/wedstrijdschema/" + myJson.Wedstrijd_id, fetchOptionsPut)
+				.then(response => Promise.all([response.status, response.json()]))
+				.then(function([status, myJson]) {
+					if (status == 200) {
+						window.location.href = "wedstrijden.html";
+						sessionStorage.removeItem("wedstrijd");
+					}
+					else if (status == 410) {
+						alert("U bent niet gemachtigd om deze handeling uit te voeren! " +
+						"U wordt teruggestuurd naar de hoofdpagina!");
+						sessionStorage.removeItem("wedstrijd");
+						window.location.href = "index.html"
+					}
+					else {
+						alert("Er is een onbekende fout opgetreden! Voer alle gegevens opnieuw in!");
+						wedstrijdToevoegen.reset();
+					}
+				});
+		}
+	});
+	
+	annuleerWijziging.addEventListener("click", function() {
+		sessionStorage.removeItem("wedstrijd");
+		window.location.href = "wedstrijden.html";
+	});
 }

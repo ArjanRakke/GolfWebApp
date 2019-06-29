@@ -5,9 +5,9 @@
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <title>Nieuw lid</title>
 </head>
-<body onload="toevoegen()">
+<body onload="toevoegenLid()">
 	<div id="frame">
-		<div>
+		<div class="containerLidToevoegen">
 			<form id="lidToevoegen">
 				NGF: <input type="number" id="NGF" name="NGF" required/>
 				<p />
@@ -21,7 +21,7 @@
 				<p />
 				Handicap: <input type="number" id="h" name="Handicap" maxlength="3" required/>
 				<p />
-				<input type="button" id="confirmInsert" value="Lid toevoegen"/>
+				<input type="button" id="toevoegenConfirmatie" value="Lid toevoegen"/>
 				<input type="button" id="annuleerToevoegen" value="Annuleer"/>
 			</form>
 		</div>

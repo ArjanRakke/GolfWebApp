@@ -1,8 +1,13 @@
 package gooiseGolfclub.persistensie;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,6 +27,8 @@ public class Leden {
 	private String emailadres;
 	@Column(name="Handicap")
 	private double handicap;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "ngf", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<ClubCommissie> clubCommissie;
 	
 	public Leden() {
 		
@@ -84,6 +91,14 @@ public class Leden {
 		this.handicap = handicap;
 	}
 	
+	public List<ClubCommissie> getClubCommissie() {
+		return clubCommissie;
+	}
+
+	public void setClubCommissie(List<ClubCommissie> clubCommissie) {
+		this.clubCommissie = clubCommissie;
+	}
+
 	public String toString() {
 		return NGF + " " + voornaam + " " + achternaam + " " + telefoonnummer + " " + emailadres + " " + handicap;
 	}

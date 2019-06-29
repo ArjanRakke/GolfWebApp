@@ -2,36 +2,188 @@ body {
 	background-color: lightBlue;
 }
 
-nav {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+#menu{
+	background-color: #36a856;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
 }
 
-a {
-	color: black;
-	text-decoration: none;
-	padding: 20px;
+#menu_lijst{
+  	text-align: center;
+  	padding-left: 0;
+  	margin-top: 0;
+  	margin-bottom: 0;
+  	list-style: none;  
 }
 
-.navLinks {
-  margin-left: 35%;
-  text-align: center;
+.menu_link{
+  	display: block;
+  	padding: 2rem 1.5rem;
+
+  	will-change: color;
+  	transition: color .25s ease-out;  
+
+  	font-weight: 700;
+	color: #fff;
+  	text-decoration: none;
+  	text-transform: uppercase;
 }
 
-a:hover {
-  background-color: lightGreen;
+.menu_link:focus{
+  outline: 2px solid #fff;
+}
+
+@media (min-width: 700px){
+
+  #menu_lijst{
+    display: flex;  
+  }
+
+  .menu_groep{
+    flex-grow: 1;
+  }
+
+  .menu_link{
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu_link:before, .menu_link:after{
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+
+    will-change: width;
+    transition: width .05s ease-out;
+
+    position: absolute;
+    bottom: 0;
+  }
+
+  .menu_link:before{
+    left: 50%;
+    transform: translateX(-50%); 
+  }
+
+  .menu_link:after{
+    right: 50%;
+    transform: translateX(50%); 
+  }
+
+  .menu_link:hover:before, .menu_link:hover:after{
+    width: 100%;
+    transition-duration: .15s;
+  }
+}
+
+#menu:hover, .menu_link:not(:hover){
+  color: black;
+}
+
+#logo {
+	position: relative;
+  	top: 50px;
+    bottom: 0;
+    left: 37%;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    height: auto;
+    max-width: 1000px;
 }
 
 #baanStatus {
-	position: fixed;
-    top: 0;
+	position: relative;
+    top: 150px;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
     width: 325px;
-    height: 250px;
+    padding: 10px;
     border: 1px solid black;
+}
+
+#baanStatusTable {
+	border-collapse: collapse;
+}
+
+#ContainerBaanStatusWijzigen {
+	position: relative;
+    top: 100px;
+    bottom: 0;
+    left: 33%;
+    right: 0;
+    margin: auto;
+}
+
+#nieuwLid {
+	float: right;
+	margin-top: -50px;
+	margin-right: 100px;
+}
+
+#nieuweWedstrijd {
+	float: right;
+	margin-top: -50px;
+	margin-right: 100px;
+}
+
+#ledenLijst {
+  overflow: auto;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+#wedstrijdSchema {
+  overflow: auto;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin-top: 100px;
+  margin-left: 100px;
+}
+
+.numberAlignment {
+	text-align: right;
+}
+
+td, th {
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+button, input[type="button"] {
+  background: #36a856;
+  background-image: -webkit-linear-gradient(top, #36a856, #36a856);
+  background-image: -moz-linear-gradient(top, #36a856, #36a856);
+  background-image: -ms-linear-gradient(top, #36a856, #36a856);
+  background-image: -o-linear-gradient(top, #36a856, #36a856);
+  background-image: linear-gradient(to bottom, #36a856, #36a856);
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  font-family: Arial;
+  color: #000000;
+  font-size: 15px;
+  padding: 10px 15px 10px 15px;
+  text-decoration: none;
+}
+
+button:hover, input[type="button"]:hover {
+  background: #22f013;
+  background-image: -webkit-linear-gradient(top, #22f013, #53c44d);
+  background-image: -moz-linear-gradient(top, #22f013, #53c44d);
+  background-image: -ms-linear-gradient(top, #22f013, #53c44d);
+  background-image: -o-linear-gradient(top, #22f013, #53c44d);
+  background-image: linear-gradient(to bottom, #22f013, #53c44d);
+  text-decoration: none;
 }

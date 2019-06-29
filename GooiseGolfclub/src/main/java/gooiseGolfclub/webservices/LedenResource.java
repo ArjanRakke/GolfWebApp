@@ -47,7 +47,7 @@ public class LedenResource {
 
 	@GET
 	@Produces("application/json")
-	// Haalt alle leden op in de JSON formaat
+	// Haalt alle leden op in een JSON array
 	public String getAllLeden() {
 		JsonArrayBuilder jab = Json.createArrayBuilder();
 
@@ -59,17 +59,18 @@ public class LedenResource {
 	}
 
 	@POST
-	//@RolesAllowed("user")
+	@RolesAllowed("commissielid")
 	@Produces("application/json")
-	//Voert een POST request uit en voegt een nieuw lid aan de database toe
-	public Response insertLid(/*@Context SecurityContext sc,*/ @FormParam("NGF") int NGF,
-			@FormParam("Voornaam") String vm, @FormParam("Achternaam") String am, @FormParam("Telefoonnummer") int tel,
+	// Voert een POST request uit en voegt een nieuw lid aan de database toe
+	public Response insertLid(@Context SecurityContext sc, @FormParam("NGF") int NGF, @FormParam("Voornaam") String vm,
+			@FormParam("Achternaam") String am, @FormParam("Telefoonnummer") int tel,
 			@FormParam("Emailadres") String email, @FormParam("Handicap") double h) {
-		//boolean role = sc.isUserInRole("user");
+		
+		boolean role = sc.isUserInRole("commissielid");
 
-		//if (role) {
+		if (role) {
 			Leden nieuwLid = service.save(NGF, vm, am, tel, email, h);
-			
+
 			if (nieuwLid == null) {
 				Map<String, String> messages = new HashMap<String, String>();
 				messages.put("error", "Lid is niet toegevoegd");
@@ -77,63 +78,57 @@ public class LedenResource {
 			}
 
 			return Response.ok(nieuwLid).build();
-		//}
+		}
 
-		/*Map<String, String> messages = new HashMap<String, String>();
+		Map<String, String> messages = new HashMap<String, String>();
 		messages.put("error", "Account mag dit niet uitvoeren!");
-		return Response.status(409).entity(messages).build();*/
+		return Response.status(410).entity(messages).build();
 	}
 
 	@PUT
 	@Path("/{NGF}")
-	// @RolesAllowed("user")
+	@RolesAllowed("commissielid")
 	@Produces("application/json")
 	// Voert een put request uit en wijzigt het lid in de database
-	public Response updateLid(/* @Context SecurityContext sc, */
-			@PathParam("NGF") int NGF, @FormParam("Voornaam") String vm, @FormParam("Achternaam") String am,
-			@FormParam("Telefoonnummer") int tel, @FormParam("Emailadres") String email,
-			@FormParam("Handicap") double h) {
+	public Response updateLid(@Context SecurityContext sc, @PathParam("NGF") int NGF, @FormParam("Voornaam") String vm,
+			@FormParam("Achternaam") String am, @FormParam("Telefoonnummer") int tel,
+			@FormParam("Emailadres") String email, @FormParam("Handicap") double h) {
 
-		// boolean role = sc.isUserInRole("user");
+		boolean role = sc.isUserInRole("commissielid");
 
-		// if (role) {
-		Leden wijzigLid = service.updateLid(NGF, vm, am, tel, email, h);
+		if (role) {
+			Leden wijzigLid = service.updateLid(NGF, vm, am, tel, email, h);
 
-		if (wijzigLid == null) {
-			Map<String, String> messages = new HashMap<String, String>();
-			messages.put("error", "Lid bestaat niet!");
-			return Response.status(409).entity(messages).build();
+			if (wijzigLid == null) {
+				Map<String, String> messages = new HashMap<String, String>();
+				messages.put("error", "Lid bestaat niet!");
+				return Response.status(409).entity(messages).build();
+			}
+
+			return Response.ok(wijzigLid).build();
 		}
 
-		return Response.ok(wijzigLid).build();
-		// }
-
-		/*
-		 * Map<String, String> messages = new HashMap<String, String>();
-		 * messages.put("error", "Account mag dit niet uitvoeren!"); return
-		 * Response.status(409).entity(messages).build();
-		 */
+		Map<String, String> messages = new HashMap<String, String>();
+		messages.put("error", "Account mag dit niet uitvoeren!");
+		return Response.status(410).entity(messages).build();
 	}
 
 	@DELETE
 	@Path("/{NGF}")
-	// @RolesAllowed("user")
+	@RolesAllowed("commissielid")
 	@Produces("application/json")
-	public Response deleteLid(/* @Context SecurityContext sc, */
-			@PathParam("NGF") int NGF) {
-		// boolean role = sc.isUserInRole("user");
+	public Response deleteLid(@Context SecurityContext sc, @PathParam("NGF") int NGF) {
+		boolean role = sc.isUserInRole("commissielid");
 
-		// if(role) {
-		if (!service.deleteLid(NGF)) {
-			return Response.status(404).build();
+		if (role) {
+			if (!service.deleteLid(NGF)) {
+				return Response.status(404).build();
+			}
+			return Response.ok().build();
 		}
-		return Response.ok().build();
-		// }
 
-		/*
-		 * Map<String, String> messages = new HashMap<String, String>();
-		 * messages.put("error", "Account mag dit niet uitvoeren!"); return
-		 * Response.status(409).entity(messages).build();
-		 */
+		Map<String, String> messages = new HashMap<String, String>();
+		messages.put("error", "Account mag dit niet uitvoeren!");
+		return Response.status(410).entity(messages).build();
 	}
 }

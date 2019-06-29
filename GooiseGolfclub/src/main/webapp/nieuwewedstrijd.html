@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<title>Wedstrijd toevoegen</title>
+</head>
+<body onload="toevoegenWedstrijd()">
+	<div id="frame">
+		<div id="containerNieuweWedstrijd">
+				<form id="wedstrijdToevoegen">
+					wedstrijd_id: <input type="number" id="wId" name="wedstrijd_id" required/><p/>
+					Naam: <input type="text" id="nm" name="naam" maxlength="60" required/><p/>
+					Type: <input type="text" id="tp" name="type" maxlength="50" required/><p/>
+					Holes: <input type="number" id="holes" name="holes" required/><p/>
+					Begindatum: <input type="date" id="bgDatum" name="begindatum" required/><p/>
+					<input type="button" id="annuleerToevoegen" value="Annuleer"/><input type="button" id="toevoegenConfirmatie" value="Wedstrijd toevoegen"/>
+				</form>
+		</div>
+	</div>
+	<script src="javascript/main.js"></script>
+</body>
+</html>

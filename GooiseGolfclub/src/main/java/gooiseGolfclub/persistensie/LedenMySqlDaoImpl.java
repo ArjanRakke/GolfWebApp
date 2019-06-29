@@ -1,6 +1,10 @@
 package gooiseGolfclub.persistensie;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -88,6 +92,10 @@ public class LedenMySqlDaoImpl implements LedenDao {
 		    Leden lid = new Leden();
 		    lid.setNGF(NGF);
 		    
+		    Query query = session.createQuery("DELETE FROM ClubCommissie WHERE ngf = :NGF");
+		    query.setParameter("NGF", lid);
+		    query.executeUpdate();
+		    
 		    session.delete(lid);
 		    
 		    t.commit();
@@ -98,6 +106,32 @@ public class LedenMySqlDaoImpl implements LedenDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	// Haalt de rol op van een commissielid
+	public String findRoleForUser(String username, String password) {
+		String role = null;
+		
+		try {
+			SessionFactory sessFact = HibernateUtil.getFactory();
+			Session session = sessFact.openSession();
+		    Transaction t = session.beginTransaction();
+		    
+			Query query = session.createQuery("SELECT rol FROM ClubCommissie WHERE Gebruikersnaam = :gbNaam AND Wachtwoord = :wachtW");
+			query.setParameter("gbNaam", username);
+			query.setParameter("wachtW", password);
+			
+			role = (String) query.getSingleResult();
+			
+			t.commit();
+			session.close();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return role;
 	}
 
 }

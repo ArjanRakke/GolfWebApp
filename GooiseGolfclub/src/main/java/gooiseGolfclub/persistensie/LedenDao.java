@@ -7,4 +7,5 @@ public interface LedenDao {
 	public Leden save(int NGF, String vm, String am, int tel, String email, double h);
 	public Leden update(int NGF, String vm, String am, int tel, String email, double h);
 	public boolean delete(int NGF);
+	public String findRoleForUser(String username, String password);
 }

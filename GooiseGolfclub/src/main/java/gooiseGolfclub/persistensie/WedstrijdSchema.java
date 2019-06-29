@@ -4,8 +4,6 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,7 +14,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class WedstrijdSchema {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="wedstrijd_id")
 	private int wedstrijd_id;
 
@@ -34,7 +31,8 @@ public class WedstrijdSchema {
 		
 	}
 	
-	public WedstrijdSchema(String nm, String tp, int h, Date bgDatum) {
+	public WedstrijdSchema(int wId, String nm, String tp, int h, Date bgDatum) {
+		this.wedstrijd_id = wId;
 		this.naam = nm;
 		this.type = tp;
 		this.holes = h;

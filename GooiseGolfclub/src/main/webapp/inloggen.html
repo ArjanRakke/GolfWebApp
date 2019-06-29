@@ -2,9 +2,21 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 <title>Inloggen</title>
 </head>
 <body>
+	<nav id="menu">
+		<ul id="menu_lijst">
+			<li class="menu_groep"><a href="index.html" class="menu_link">Home</a></li>
+			<li class="menu_groep"><a href="leden.html" class="menu_link">Leden</a></li>
+			<li class="menu_groep"><a href="wedstrijden.html" class="menu_link">Wedstrijden</a></li>
+			<li class="menu_groep"><a href="inloggen.html" class="menu_link">inloggen</a></li>
+		</ul>
+	</nav>
+
+	<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">	
+
 	<form id=loginForm>
 		Gebruikersnaam: <input type="text" name="username"/><p/>
 		Wachtwoord: <input type="password" name="password"/><p/>
@@ -19,10 +31,11 @@
 			fetch("restservices/authentication", {method: "POST", body: encData})
 				.then(function(response){
 					if(response.ok) {
-						window.location.href = "weatherApp.html";
+						window.location.href = "index.html";
 						return response.json();
 					}
 					else {
+						alert("Verkeerd wachtwoord en/of gebruikersnaam ingevoerd!")
 						throw "Wrong username/password";
 					}
 				})
