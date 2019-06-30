@@ -7,23 +7,29 @@
 </head>
 <body onload="wijzigenLid()">
 	<div id="frame">
-		<div>
+	
+		<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">
+	
+		<div id="containerLidWijzigen">
 			<form id="lidWijzigen">
-				<input type="hidden" id="NGF" name="NGF" required />
-				<p />
-				Voornaam: <input type="text" id="vm" name="Voornaam" maxlength="50" required/>
-				<p />
-				Achternaam: <input type="text" id="am" name="Achternaam" maxlength="50" required/>
-				<p />
-				Telefoonnummer: <input type="text" id="tel" name="Telefoonnummer" maxlength="10" required/>
-				<p />
-				Emailadres: <input type="email" id="email" name="Emailadres" maxlength="50" required/>
-				<p />
-				Handicap: <input type="number" id="h" name="Handicap" required/>
-				<p />
-				<input type="button" id="confirmUpdate" value="Lid wijzigen"/>
-				<input type="button" id="annuleerWijziging" value="Annuleer"/>
+				<div class="inputData">
+					<input type="hidden" id="NGF" name="NGF" required/>
+					<p />
+					<label><b>Voornaam:</b></label> <input type="text" id="vm" name="Voornaam" maxlength="50" required/>
+					<p />
+					<label><b>Achternaam:</b></label> <input type="text" id="am" name="Achternaam" maxlength="50" required/>
+					<p />
+					<label><b>Telefoonnummer:</b></label> <input type="text" id="tel" name="Telefoonnummer" maxlength="10" required/>
+					<p />
+					<label><b>Emailadres:</b></label> <input type="email" id="email" name="Emailadres" maxlength="50" required/>
+					<p />
+					<label><b>Handicap:</b></label> <input type="number" id="h" name="Handicap" required/>
+				</div>
 			</form>
+			<div id="containerLidWijzigen2">
+				<button id="annuleerWijziging">Annuleer</button>
+				<button id="wijzigenConfirmatieLid">Lid wijzigen</button>
+			</div>
 		</div>
 	</div>
 	<script src="javascript/main.js"></script>

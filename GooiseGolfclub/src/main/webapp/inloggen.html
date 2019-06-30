@@ -17,11 +17,15 @@
 
 	<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">	
 
-	<form id=loginForm>
-		Gebruikersnaam: <input type="text" name="username"/><p/>
-		Wachtwoord: <input type="password" name="password"/><p/>
-		<input type="button" value="Login" id="login"/>
-	</form>
+	<div id=containerLogin>
+		<form id=loginForm>
+		<div class="inputData">
+			<label><b>Gebruikersnaam:</b></label> <input type="text" name="username"/><p/>
+			<label><b>Wachtwoord:</b></label> <input type="password" name="password"/><p/>
+		</div>
+			<input type="button" value="Login" id="login"/>
+		</form>
+	</div>
 	
 	<script>
 		function login(event) {

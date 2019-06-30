@@ -94,14 +94,15 @@ body {
 
 #baanStatus {
 	position: relative;
-    top: 150px;
+    top: 125px;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    width: 325px;
+    width: 800px;
     padding: 10px;
     border: 1px solid black;
+    border-radius: 10px;
 }
 
 #baanStatusTable {
@@ -115,6 +116,10 @@ body {
     left: 33%;
     right: 0;
     margin: auto;
+}
+
+#wijzigenConfirmatieBaanStatus {
+	margin-left: 395px;
 }
 
 #nieuwLid {
@@ -138,6 +143,56 @@ body {
   margin-left: 100px;
 }
 
+#containerLidToevoegen {
+	position: relative;
+    top: 100px;
+    bottom: 0;
+    left: 39%;
+    right: 0;
+    margin: auto;
+}
+
+#lidToevoegen {
+    padding: 50px;
+    width: 300px;
+    height: 205px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+#containerLidToevoegen2{
+	margin-top: 10px;
+}
+
+#toevoegenConfirmatieLid {
+	margin-left: 175px;	
+}
+
+#containerLidWijzigen {
+	position: relative;
+    top: 100px;
+    bottom: 0;
+    left: 39%;
+    right: 0;
+    margin: auto;
+}
+
+#lidWijzigen {
+    padding: 50px;
+    width: 300px;
+    height: 205px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+#containerLidWijzigen2{
+	margin-top: 10px;
+}
+
+#wijzigenConfirmatieLid {
+	margin-left: 192px;
+}
+
 #wedstrijdSchema {
   overflow: auto;
   font-family: arial, sans-serif;
@@ -145,6 +200,77 @@ body {
   width: 90%;
   margin-top: 100px;
   margin-left: 100px;
+}
+
+#containerNieuweWedstrijd {
+	position: relative;
+    top: 100px;
+    bottom: 0;
+    left: 39%;
+    right: 0;
+    margin: auto;
+}
+
+#wedstrijdToevoegen {
+    padding: 50px;
+    width: 300px;
+    height: 175px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+#containerNieuweWedstrijd2{
+	margin-top: 10px;
+}
+
+#toevoegenConfirmatieWedstrijd {
+	margin-left: 132px;
+}
+
+#containerWedstrijdWijzigen {
+	position: relative;
+    top: 100px;
+    bottom: 0;
+    left: 39%;
+    right: 0;
+    margin: auto;
+}
+
+#wedstrijdWijzigen {
+    padding: 50px;
+    width: 300px;
+    height: 175px;
+    border: solid 1px black;
+    border-radius: 10px;
+}
+
+#containerWedstrijdWijzigen2 {
+	margin-top: 10px;
+}
+
+#wijzigenConfirmatieWedstrijd {
+	margin-left: 145px;
+}
+
+#containerLogin {
+	position: relative;
+    top: 125px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    padding: 50px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.inputData label {
+	position: absolute;
+}
+
+.inputData input {
+	margin-left: 10em;
 }
 
 .numberAlignment {

@@ -7,15 +7,23 @@
 </head>
 <body onload="toevoegenWedstrijd()">
 	<div id="frame">
+	
+		<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">
+	
 		<div id="containerNieuweWedstrijd">
-				<form id="wedstrijdToevoegen">
-					wedstrijd_id: <input type="number" id="wId" name="wedstrijd_id" required/><p/>
-					Naam: <input type="text" id="nm" name="naam" maxlength="60" required/><p/>
-					Type: <input type="text" id="tp" name="type" maxlength="50" required/><p/>
-					Holes: <input type="number" id="holes" name="holes" required/><p/>
-					Begindatum: <input type="date" id="bgDatum" name="begindatum" required/><p/>
-					<input type="button" id="annuleerToevoegen" value="Annuleer"/><input type="button" id="toevoegenConfirmatie" value="Wedstrijd toevoegen"/>
-				</form>
+			<form id="wedstrijdToevoegen">
+				<div class="inputData">
+					<label><b>wedstrijd_id:</b></label> <input type="number" id="wId" name="wedstrijd_id" required/><p/>
+					<label><b>Naam:</b></label> <input type="text" id="nm" name="naam" maxlength="60" required/><p/>
+					<label><b>Type:</b></label> <input type="text" id="tp" name="type" maxlength="50" required/><p/>
+					<label><b>Holes:</b></label> <input type="number" id="holes" name="holes" required/><p/>
+					<label><b>Begindatum:</b></label> <input type="date" id="bgDatum" name="begindatum" required/><p/>
+				</div>
+			</form>
+			<div id="containerNieuweWedstrijd2">
+				<button id="annuleerToevoegen">Annuleer</button>
+				<button id="toevoegenConfirmatieWedstrijd">Wedstrijd toevoegen</button>
+			</div>
 		</div>
 	</div>
 	<script src="javascript/main.js"></script>

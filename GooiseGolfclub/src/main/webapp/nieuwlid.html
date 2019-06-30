@@ -7,24 +7,31 @@
 </head>
 <body onload="toevoegenLid()">
 	<div id="frame">
-		<div class="containerLidToevoegen">
+	
+		<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">
+	
+		<div id="containerLidToevoegen">
 			<form id="lidToevoegen">
-				NGF: <input type="number" id="NGF" name="NGF" required/>
-				<p />
-				Voornaam: <input type="text" id="vm" name="Voornaam" maxlength="50" required/>
-				<p />
-				Achternaam: <input type="text" id="am" name="Achternaam" maxlength="50" required/>
-				<p />
-				Telefoonnummer: <input type="text" id="tel" name="Telefoonnummer" maxlength="10" required/>
-				<p />
-				Emailadres: <input type="email" id="email" name="Emailadres" maxlength="50" required/>
-				<p />
-				Handicap: <input type="number" id="h" name="Handicap" maxlength="3" required/>
-				<p />
-				<input type="button" id="toevoegenConfirmatie" value="Lid toevoegen"/>
-				<input type="button" id="annuleerToevoegen" value="Annuleer"/>
+				<div class="inputData">
+					<label><b>NGF:</b></label> <input type="number" class="inputData" id="NGF" name="NGF" required/>
+					<p />
+					<label><b>Voornaam:</b></label> <input type="text" class="inputData" id="vm" name="Voornaam" maxlength="50" required/>
+					<p />
+					<label><b>Achternaam:</b></label> <input type="text" class="inputData" id="am" name="Achternaam" maxlength="50" required/>
+					<p />
+					<label><b>Telefoonnummer:</b></label> <input type="text" class="inputData" id="tel" name="Telefoonnummer" maxlength="10" required/>
+					<p />
+					<label><b>Emailadres:</b></label> <input type="email" class="inputData" id="email" name="Emailadres" maxlength="50" required/>
+					<p />
+					<label><b>Handicap:</b></label> <input type="number" class="inputData" id="h" name="Handicap" maxlength="3" required/>
+				</div>
 			</form>
+			<div id=containerLidToevoegen2>
+				<button id="annuleerToevoegen">Annuleer</button>
+				<button id="toevoegenConfirmatieLid">Lid toevoegen</button>
+			</div>
 		</div>
+		
 	</div>
 	<script src="javascript/main.js"></script>
 </body>

@@ -94,7 +94,7 @@ function showLedenLijst() {
 function toevoegenLid() {
 	var lidToevoegen = document.querySelector("#lidToevoegen");
 	
-	toevoegenConfirmatie.addEventListener("click", function() {
+	toevoegenConfirmatieLid.addEventListener("click", function() {
 		
 		if(NGF.value == "" || vm.value == "" || am.value == "" 
 			|| tel.value == "" || email.value == "" || h.value == "") {
@@ -151,7 +151,7 @@ function toevoegenLid() {
 // wijzigt een lid in de lijst
 function wijzigenLid() {
 	var lidWijzigen = document.querySelector("#lidWijzigen");
-	var wijzigenConfirmatie = document.querySelector("#confirmUpdate");
+	var wijzigenConfirmatieLid = document.querySelector("#wijzigenConfirmatieLid");
 	var annuleerWijziging = document.querySelector("#annuleerWijziging");
 	var lid = sessionStorage.getItem("lid");
 	var myJson = JSON.parse(lid);
@@ -163,7 +163,7 @@ function wijzigenLid() {
 	document.querySelector("#email").value = myJson.Emailadres;
 	document.querySelector("#h").value = myJson.Handicap;
 	
-	wijzigenConfirmatie.addEventListener("click", function() {
+	wijzigenConfirmatieLid.addEventListener("click", function() {
 		
 		if(NGF.value == "" || vm.value == "" || am.value == "" 
 			|| tel.value == "" || email.value == "" || h.value == "") {
@@ -263,7 +263,7 @@ function wijzigenBaanstatus() {
 	var baan_id = document.querySelector("#bId").value;
 	var annuleerWijziging = document.querySelector("#annuleerWijziging");
 	
-	wijzigenConfirmatie.addEventListener("click", function() {
+	wijzigenConfirmatieBaanStatus.addEventListener("click", function() {
 			if(document.querySelector("#op").checked) {
 				document.querySelector("#opUnchecked").disabled = true;
 			}
@@ -402,7 +402,7 @@ function showWedstrijdSchema() {
 function toevoegenWedstrijd() {
 	var wedstrijdToevoegen = document.querySelector("#wedstrijdToevoegen");
 	
-	toevoegenConfirmatie.addEventListener("click" , function() {
+	toevoegenConfirmatieWedstrijd.addEventListener("click" , function() {
 		if(wId.value == "" || nm.value == "" || tp.value == "" 
 			|| holes.value == "" || bgDatum.value == "") {
 			alert("Voer alle velden correct in alstublieft!");
@@ -461,7 +461,7 @@ function wijzigenWedstrijd() {
 	document.querySelector("#holes").value = myJson.Holes;
 	document.querySelector("#bgDatum").value = myJson.Begindatum;
 	
-	wijzigenConfirmatie.addEventListener("click", function() {
+	wijzigenConfirmatieWedstrijd.addEventListener("click", function() {
 		
 		if(wId.value == "" || nm.value == "" || tp.value == "" 
 			|| holes.value == "" || bgDatum.value == "") {

@@ -11,14 +11,19 @@
 		<img alt="GooiseGolfclubLogo" src="css/Logo.png" id="logo">	
 	
 		<div id="containerWedstrijdWijzigen">
-				<form id="wedstrijdWijzigen">
+			<form id="wedstrijdWijzigen">
+				<div class="inputData">
 					<input type="hidden" id="wId" name="wedstrijd_id" required/><p/>
-					Naam: <input type="text" id="nm" name="naam" maxlength="60" required/><p/>
-					Type: <input type="text" id="tp" name="type" maxlength="50" required/><p/>
-					Holes: <input type="number" id="holes" name="holes" required/><p/>
-					Begindatum: <input type="date" id="bgDatum" name="begindatum" required/><p/>
-					<input type="button" id="annuleerWijziging" value="Annuleer"/><input type="button" id="wijzigenConfirmatie" value="Wedstrijd wijzigen"/>
-				</form>
+					<label><b>Naam:</b></label> <input type="text" id="nm" name="naam" maxlength="60" required/><p/>
+					<label><b>Type:</b></label> <input type="text" id="tp" name="type" maxlength="50" required/><p/>
+					<label><b>Holes:</b></label> <input type="number" id="holes" name="holes" required/><p/>
+					<label><b>Begindatum:</b></label> <input type="date" id="bgDatum" name="begindatum" required/><p/>
+				</div>
+			</form>
+			<div id="containerWedstrijdWijzigen2">
+				<button id="annuleerWijziging">Annuleer</button>
+				<button id="wijzigenConfirmatieWedstrijd">Wedstrijd Wijzigen</button>
+			</div>
 		</div>
 	</div>
 	<script src="javascript/main.js"></script>
