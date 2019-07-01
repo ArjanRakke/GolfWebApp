@@ -3,7 +3,6 @@ package gooiseGolfclub.webservices;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +23,6 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-import gooiseGolfclub.persistensie.Leden;
 import gooiseGolfclub.persistensie.WedstrijdSchema;
 import gooiseGolfclub.persistensie.WedstrijdSchemaDao;
 import gooiseGolfclub.persistensie.WedstrijdSchemaMySqlDaoImpl;

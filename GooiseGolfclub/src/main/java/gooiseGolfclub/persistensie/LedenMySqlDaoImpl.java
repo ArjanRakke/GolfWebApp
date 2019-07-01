@@ -1,7 +1,5 @@
 package gooiseGolfclub.persistensie;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -9,7 +7,6 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 
 public class LedenMySqlDaoImpl implements LedenDao {
 
