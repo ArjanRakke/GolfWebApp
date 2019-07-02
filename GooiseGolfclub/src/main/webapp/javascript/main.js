@@ -250,6 +250,7 @@ function showBaanStatus() {
 			var wijzigBaanStatus = document.querySelector("#wijzigBaanStatus");
 			
 			wijzigBaanStatus.addEventListener("click", function() {
+				sessionStorage.setItem("aankondiging", status.Aankondiging);
 				window.location.href = "baanstatuswijzigen.html";
 			});
 		}
@@ -262,7 +263,9 @@ function showBaanStatus() {
 function wijzigenBaanstatus() {
 	var baanStatusWijzigen = document.querySelector("#baanStatusWijzigen");
 	var baan_id = document.querySelector("#bId").value;
+	var aankondiging = sessionStorage.getItem("aankondiging");
 	var annuleerWijziging = document.querySelector("#annuleerWijziging");
+	ak.innerHTML = aankondiging;
 	
 	wijzigenConfirmatieBaanStatus.addEventListener("click", function() {
 			if(document.querySelector("#op").checked) {
@@ -302,6 +305,7 @@ function wijzigenBaanstatus() {
 				.then(response => Promise.all([response.status, response.json()]))
 				.then(function([status, myJson]) {
 					if (status == 200) {
+						sessionStorage.removeItem("aankondiging");
 						window.location.href = "index.html";
 					}
 					else {
@@ -313,6 +317,7 @@ function wijzigenBaanstatus() {
 	});
 	
 	annuleerWijziging.addEventListener("click", function() {
+		sessionStorage.removeItem("aankondiging");
 		window.location.href= "index.html";
 	});
 }
