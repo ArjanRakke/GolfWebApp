@@ -56,6 +56,7 @@ function showLedenLijst() {
 				window.location.href = "lidwijzigen.html";
 			});
 			
+			// Definieer de methode en de headers van het request
 			var fetchOptionsDelete = {
 					method: 'DELETE',
 					headers : { 'Authorization': 'Bearer ' + window.sessionStorage.getItem("sessionToken") }
@@ -459,7 +460,9 @@ function wijzigenWedstrijd() {
 	document.querySelector("#nm").value = myJson.Naam;
 	document.querySelector("#tp").value = myJson.Type;
 	document.querySelector("#holes").value = myJson.Holes;
-	document.querySelector("#bgDatum").value = myJson.Begindatum;
+	var date = myJson.Begindatum;
+	var newDate = date.split("-").reverse().join("-");
+	document.querySelector("#bgDatum").value = newDate;
 	
 	wijzigenConfirmatieWedstrijd.addEventListener("click", function() {
 		
