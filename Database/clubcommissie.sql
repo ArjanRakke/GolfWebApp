@@ -1,0 +1,2 @@
+INSERT INTO clubcommissie (NGF, Gebruikersnaam, Wachtwoord, Rol) VALUES (990399, "Arjan", "admin", "commissielid");
+INSERT INTO clubcommissie (NGF, Gebruikersnaam, Wachtwoord, Rol) VALUES (56493, "Ton", "Ton45", "commissielid");
